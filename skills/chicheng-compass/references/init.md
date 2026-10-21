@@ -1,0 +1,33 @@
+# 初始化
+
+完成标准：在明确目标下补齐缺失的通用骨架，列出新增、保留和未完成项。已有内容及团队规则保持原样。
+
+1. 确认目标项目目录确实存在。采用用户明确的位置；多个仓库或 worktree 并存时，指出本次目标。初始化资料不需要 Git 或 CodeGraph。
+2. 读取目标范围内适用的仓库规则，检查默认资料目录及已有内容。目录占用、链接指向其他位置等情况先说明，不能通过覆盖或迁移解决。
+3. 选择以下一种方式创建缺失文件。
+4. 报告结果，并说明项目知识尚未填充；推荐下一步，但等待用户选择。
+
+## 可选脚本
+
+有 Python 3.10+ 时，可执行 Skill 内的脚本，所有路径先替换为本次实际绝对路径，不从下例猜项目位置：
+
+```text
+python -X utf8 "<Skill绝对路径>/scripts/init_workspace.py" --project "<项目绝对路径>"
+```
+
+脚本仅从 [初始骨架](../assets/scaffold/README.md) 复制四个文件到 `docs/ChiChengDocs/`。先检查所有目标，使用独占创建保留现有文件；不会初始化项目知识或工具。输出包含 `created`、`preserved` 和目标根目录。
+
+如果路径冲突或越过目标目录，脚本报错并说明问题。未经用户选择，不改用其他目录重试。
+
+## 没有 Python
+
+直接使用文件工具，将下列资源逐个复制为缺失文件；保持原文中文，不替换成推测的项目结论：
+
+| 资源 | 资料区内目标 |
+| --- | --- |
+| [资料入口](../assets/scaffold/README.md) | `README.md` |
+| [个人约束](../assets/scaffold/constraints.md) | `constraints.md` |
+| [知识入口](../assets/scaffold/knowledge/README.md) | `knowledge/README.md` |
+| [需求入口](../assets/scaffold/requirements/README.md) | `requirements/README.md` |
+
+同样先检查全部目标，只创建缺失文件。已有文件无需改成模板样式。不要提前生成运行记录、项目概述、术语表、模块文件或示例需求目录。
