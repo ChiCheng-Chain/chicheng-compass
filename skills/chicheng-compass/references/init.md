@@ -15,7 +15,7 @@
 python -X utf8 "<Skill绝对路径>/scripts/init_workspace.py" --project "<项目绝对路径>"
 ```
 
-脚本仅从 [初始骨架](../assets/scaffold/README.md) 复制四个文件到 `docs/ChiChengDocs/`。先检查所有目标，使用独占创建保留现有文件；不会初始化项目知识或工具。输出包含 `created`、`preserved` 和目标根目录。
+脚本仅从 [初始骨架](../assets/scaffold/README.md) 复制五个文件到 `docs/ChiChengDocs/`，其中包括项目专属信息的说明入口。先检查所有目标，使用独占创建保留现有文件；不会填充项目知识或安装工具。输出包含 `created`、`preserved` 和目标根目录。
 
 如果路径冲突或越过目标目录，脚本报错并说明问题。未经用户选择，不改用其他目录重试。
 
@@ -28,6 +28,7 @@ python -X utf8 "<Skill绝对路径>/scripts/init_workspace.py" --project "<项�
 | [资料入口](../assets/scaffold/README.md) | `README.md` |
 | [个人约束](../assets/scaffold/constraints.md) | `constraints.md` |
 | [知识入口](../assets/scaffold/knowledge/README.md) | `knowledge/README.md` |
+| [项目专属信息](../assets/scaffold/knowledge/project-specific/README.md) | `knowledge/project-specific/README.md` |
 | [需求入口](../assets/scaffold/requirements/README.md) | `requirements/README.md` |
 
-同样先检查全部目标，只创建缺失文件。已有文件无需改成模板样式。不要提前生成运行记录、项目概述、术语表、模块文件或示例需求目录。
+同样先检查全部目标，只创建缺失文件。已有文件无需改成模板样式。项目专属信息只预留说明，不自动收集脚本或项目约束。不要提前生成运行记录、项目概述、术语表、模块文件或示例需求目录。

@@ -14,6 +14,7 @@ FILES = (
     Path("README.md"),
     Path("constraints.md"),
     Path("knowledge/README.md"),
+    Path("knowledge/project-specific/README.md"),
     Path("requirements/README.md"),
 )
 

@@ -67,7 +67,9 @@ docs/ChiChengDocs/
 ├── README.md
 ├── constraints.md
 ├── knowledge/
-│   └── README.md
+│   ├── README.md
+│   └── project-specific/
+│       └── README.md
 └── requirements/
     └── README.md
 ```
@@ -75,6 +77,7 @@ docs/ChiChengDocs/
 - 根入口解释资料区用途、阅读方式及各区域的位置。
 - 个人约束文件供用户维护自己的补充要求，初始默认内容可由用户调整。
 - 知识区域的说明提供高维知识组织建议，不生成未经核实的项目概述或模块结论。
+- 项目专属信息预留在 `knowledge/project-specific/README.md`，供后续补充自写脚本说明和项目专属约束；初始化仅生成入口，不自动收集或填充内容。
 - 需求区域支持按事项建立独立目录，容纳调研、讨论、确认稿、设计、原型及附件。例如 `requirements/2026-10-16-执行报告文件生成/`。
 - 推荐模板和示例可由 Skill 按需提供，不要求初始化时生成全部模板文件。
 - 重复初始化识别并保留已有内容；需要修改或迁移已有内容时先提出建议。

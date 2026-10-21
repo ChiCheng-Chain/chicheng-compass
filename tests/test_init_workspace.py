@@ -28,16 +28,22 @@ class InitWorkspaceTests(unittest.TestCase):
         self.project.mkdir()
         self.docs = self.project / "docs" / "ChiChengDocs"
 
-    def test_creates_only_four_scaffold_files_without_git_or_codegraph(self):
+    def test_creates_scaffold_without_project_facts_or_tools(self):
         result = MODULE.initialize(self.project)
         actual = {
             path.relative_to(self.project).as_posix()
             for path in self.project.rglob("*")
             if path.is_file()
         }
-        expected = {f"docs/ChiChengDocs/{path.as_posix()}" for path in MODULE.FILES}
+        expected = {
+            "docs/ChiChengDocs/README.md",
+            "docs/ChiChengDocs/constraints.md",
+            "docs/ChiChengDocs/knowledge/README.md",
+            "docs/ChiChengDocs/knowledge/project-specific/README.md",
+            "docs/ChiChengDocs/requirements/README.md",
+        }
         self.assertEqual(expected, actual)
-        self.assertEqual(4, len(result["created"]))
+        self.assertEqual(5, len(result["created"]))
         self.assertEqual([], result["preserved"])
         for relative in MODULE.FILES:
             self.assertEqual(
@@ -50,15 +56,19 @@ class InitWorkspaceTests(unittest.TestCase):
         modified = self.docs / "constraints.md"
         user_content = "# 我的约束\r\n\r\n已有规则原样保留。\r\n".encode("utf-8")
         modified.write_bytes(user_content)
+        project_notes = self.docs / "knowledge" / "project-specific" / "README.md"
+        project_content = "# 项目专属信息\n\n已有脚本说明和项目约束。\n".encode("utf-8")
+        project_notes.write_bytes(project_content)
         missing = self.docs / "requirements" / "README.md"
         missing.unlink()
         result = MODULE.initialize(self.project)
         self.assertEqual(["requirements/README.md"], result["created"])
-        self.assertEqual(3, len(result["preserved"]))
+        self.assertEqual(4, len(result["preserved"]))
         self.assertEqual(user_content, modified.read_bytes())
+        self.assertEqual(project_content, project_notes.read_bytes())
         repeated = MODULE.initialize(self.project)
         self.assertEqual([], repeated["created"])
-        self.assertEqual(4, len(repeated["preserved"]))
+        self.assertEqual(5, len(repeated["preserved"]))
 
     def test_team_rules_and_existing_docs_are_untouched(self):
         existing = {
@@ -122,7 +132,7 @@ class InitWorkspaceTests(unittest.TestCase):
     def test_parallel_initializations_preserve_complete_files(self):
         with ThreadPoolExecutor(max_workers=2) as pool:
             results = list(pool.map(MODULE.initialize, [self.project, self.project]))
-        self.assertEqual(4, sum(len(result["created"]) for result in results))
+        self.assertEqual(5, sum(len(result["created"]) for result in results))
         for relative in MODULE.FILES:
             self.assertEqual(
                 (SKILL / "assets" / "scaffold" / relative).read_bytes(),
@@ -158,7 +168,7 @@ class InitWorkspaceTests(unittest.TestCase):
         )
         output = json.loads(result.stdout)
         self.assertEqual(str(self.project.resolve()), output["project"])
-        self.assertEqual(4, len(output["created"]))
+        self.assertEqual(5, len(output["created"]))
         self.assertFalse((copied / "docs").exists())
 
 
