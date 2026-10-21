@@ -40,6 +40,8 @@ $chicheng-compass evolve，比较这套新流程，修改位置使用我指定�
 
 普通初始化只创建用途说明、个人约束入口与知识、需求目录，并在 `knowledge/project-specific/README.md` 预留项目专属信息入口，供后续登记自写脚本和项目专属约束；骨架脚本不扫描或填充内容。
 
+显式使用 Skill 处理项目时，第一步是设置并验证 `docs/ChiChengDocs/` 的 [Git 本地忽略](skills/chicheng-compass/references/local-ignore.md)，再进入所选动作。只追加 Git 本地 `info/exclude`，不改共享 `.gitignore`，不会影响其他人的克隆；重复使用不重复追加。已跟踪或暂存内容会提示用户处理，不自动取消跟踪。非 Git 目录跳过，安装 Skill 时不自动执行。仅演进独立 Skill 副本、没有项目目标时不修改其他仓库。
+
 明确要求首次建库时，可以在 `init` 中选用 [推荐知识建设流程](skills/chicheng-compass/references/knowledge-building.md)：主 Agent 粗扫 → 按职责研究 → 综合核验与业务建模 → 建立索引 → 用户确认后落库。流程可调整、跳过或替换，CodeGraph 和子 Agent 都不是硬依赖，目录与章节也不强制。
 
 `read` 按任务查阅，不全量加载；`sync` 维护已有知识，也可维护你明确指定的现有文档，不自行切换到首次建库。
@@ -58,7 +60,7 @@ $chicheng-compass evolve，比较这套新流程，修改位置使用我指定�
 
 ## 开发与验证
 
-Skill 的阅读、分析和维护不依赖 Python。可选初始化脚本使用 Python 3.10 及以上版本、仅依赖标准库；没有 Python 时，Agent 按初始化流程逐个创建缺失文件即可。
+Skill 的阅读、分析和维护不依赖 Python。可选初始化脚本使用 Python 3.10 及以上版本、仅依赖标准库；Git 工作区的本地排除需要 Git。没有 Python 时，Agent 按文档完成本地忽略，再逐个创建缺失文件。
 
 ```text
 python -X utf8 -m unittest discover -s tests -v
