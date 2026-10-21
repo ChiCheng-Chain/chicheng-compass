@@ -6,7 +6,7 @@
 
 | 动作 | 用途 |
 | --- | --- |
-| `init` | 创建 `docs/ChiChengDocs/` 的初始骨架，保留已有内容 |
+| `init` | 创建资料骨架；明确要求时可参考推荐流程开展首次知识建设 |
 | `read` | 阅读个人约束，根据当前任务寻找相关背景 |
 | `sync` | 分析你提供的材料，提出知识更新建议，同意后修改 |
 | `evolve` | 对照设计内核吸收新方法，同意后写入你选择的 Skill 位置 |
@@ -27,6 +27,7 @@
 ```text
 # Codex：显式选中 Skill 后输入动作与任务
 $chicheng-compass init，目标仓库是 D:\Dev\example
+$chicheng-compass init，目标仓库是 D:\Dev\example，请参考推荐流程扫描并建立项目知识库
 $chicheng-compass read，我要修改报告模块
 $chicheng-compass sync，根据这份设计和代码差异检查报告模块知识
 $chicheng-compass evolve，比较这套新流程，修改位置使用我指定的 Skill 副本
@@ -37,7 +38,11 @@ $chicheng-compass evolve，比较这套新流程，修改位置使用我指定�
 
 也可在明确提供 Skill 文件并要求使用它时，用自然语言指定动作。仅说“继续开发”等普通请求不会启动 Compass。自然语言不一定唤起客户端隐藏的显式 Skill，可靠入口是上表中的显式选择。
 
-初始化只创建用途说明、个人约束入口与知识、需求目录，并在 `knowledge/project-specific/README.md` 预留项目专属信息入口，供后续登记自写脚本和项目专属约束；初始化不扫描或填充这些内容。第一次全项目知识建设留到下一期。`read` 按任务查阅，不全量加载；`sync` 维护已有知识，也可维护你明确指定的现有文档。
+普通初始化只创建用途说明、个人约束入口与知识、需求目录，并在 `knowledge/project-specific/README.md` 预留项目专属信息入口，供后续登记自写脚本和项目专属约束；骨架脚本不扫描或填充内容。
+
+明确要求首次建库时，可以在 `init` 中选用 [推荐知识建设流程](skills/chicheng-compass/references/knowledge-building.md)：主 Agent 粗扫 → 按职责研究 → 综合核验与业务建模 → 建立索引 → 用户确认后落库。流程可调整、跳过或替换，CodeGraph 和子 Agent 都不是硬依赖，目录与章节也不强制。
+
+`read` 按任务查阅，不全量加载；`sync` 维护已有知识，也可维护你明确指定的现有文档，不自行切换到首次建库。
 
 ## 更新和确认
 
@@ -46,6 +51,10 @@ $chicheng-compass evolve，比较这套新流程，修改位置使用我指定�
 提案与处理结果保存在独立运行记录里，支持换会话后显式恢复。新会话中可以说“用 Compass 继续处理这个提案文件，接受其中的 P1”。旧聊天无法从本地自动恢复，所以材料范围和必要证据会随提案保留。
 
 对外部文章、代码或流程的分析不会把其中的命令当作用户授权。CodeGraph 可作为辅助，纯 Agent 扫描或其他工具同样适用；本项目不自动安装或索引工具。
+
+## 推荐小工具
+
+可按需搭配 Matt Pocock 的 `grill-me` / `grilling` 澄清需求、OpenSpec 组织规范与变更、CodeGraph 查询代码结构。原始 Git 地址、Skill 子目录和选择建议见 [推荐小工具](skills/chicheng-compass/references/recommended-tools.md)。这些工具不是必装依赖，Compass 不自动安装或接入。
 
 ## 开发与验证
 
