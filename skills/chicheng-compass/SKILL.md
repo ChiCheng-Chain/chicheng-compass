@@ -1,16 +1,16 @@
 ---
 name: chicheng-compass
-description: 手动初始化项目资料、引导阅读、提议更新知识，或对照内核优化 Skill。
+description: 手动发现项目与知识入口，初始化资料、引导阅读、提议同步或优化 Skill。
 disable-model-invocation: true
 ---
 
 # ChiCheng Compass
 
-只响应用户明确选择的动作或自然语言请求。Codex 使用 `$chicheng-compass 动作`，Claude Code 使用 `/chicheng-compass 动作`。若只有 Skill 名而没有清晰意图，简短列出四个动作，请用户选择，不先扫描项目。
+只响应用户显式调用。Codex 可从 `/skills` 选择或用 `$chicheng-compass 动作`，Claude Code 使用 `/chicheng-compass 动作`。只有 Skill 名时，先只读发现本次目录中的项目与知识入口，分别做简短介绍，再提示四个动作；不自动初始化或更新。
 
 ## 路由
 
-先确认动作及目标。进入项目动作前，先按 [本地忽略](references/local-ignore.md) 配置并验证资料区的 Git 本地排除，再执行对应流程；仅演进独立 Skill 副本、没有项目目标时不寻找或修改其他仓库。相对资源路径均相对于本 Skill 目录，不能相对于任务工作目录猜路径。
+先读 [项目发现与引用](references/project-discovery.md)，区分当前项目、多项目父目录与全局 Skill 安装目录。明确实际项目后，进入该项目动作的第一步仍是按 [本地忽略](references/local-ignore.md) 配置并验证排除，再执行对应流程；纯目录发现/介绍保持只读。仅演进独立 Skill 副本时不寻找或修改其他仓库。相对资源路径均相对于本 Skill 目录，不能相对于任务工作目录猜路径。
 
 | 用户意图 | 动作 | 必读流程 |
 | --- | --- | --- |
@@ -23,7 +23,7 @@ disable-model-invocation: true
 
 ## 工作约定
 
-- 以用户指定的项目、资料入口或 Skill 位置为目标。未指定项目时可采用明确的当前仓库；存在多个候选时先问清目标。不要把 Skill 安装目录误当成业务仓库。
+- 以用户指定的项目、资料入口或 Skill 位置为目标。个人全局安装一次即可，不要求项目安装副本。多个项目分别引用各自的知识和规则；写入目标有歧义先问，不在父目录创建合并知识库，不把安装目录当成项目。
 - 项目资料默认入口为目标仓库的 `docs/ChiChengDocs/README.md`。初始化之外，目录不存在就说明并提供下一步，不顺带创建。用户明确给出其他文档位置时使用该位置。
 - 遵守原仓库规则，再读取资料入口指向的个人约束及适用的项目专属约束。冲突需要指出；团队的 `AGENTS.md`、`CLAUDE.md` 不是 Compass 的修改对象。
 - 完成本地忽略准备后，`read` 对项目内容保持只读，普通 `init` 只创建缺失骨架。用户明确选择首次知识建设时可以研究并保存草案；它与 `sync`、`evolve` 的正式内容写入都按 [提案与确认](references/proposals.md) 执行。

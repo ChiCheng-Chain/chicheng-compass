@@ -1,6 +1,6 @@
 # 第一步：本地忽略
 
-用户显式使用 Compass 处理项目时，先确认实际项目目录，再设置并验证 `docs/ChiChengDocs/` 的 Git 本地排除。安装 Skill 或普通开发对话不会触发此步骤，也不注册 Hook。
+用户显式使用 Compass 处理项目时，先按 [项目发现](project-discovery.md) 明确实际项目，再设置并验证该项目 `docs/ChiChengDocs/` 的 Git 本地排除。仅发现和介绍多个项目不修改它们的Git元数据；安装 Skill 或普通开发对话不会触发此步骤，也不注册 Hook。
 
 只修改 Git 返回的 `info/exclude` 文件，保留已有规则，不改共享 `.gitignore`、团队规则、索引或全局配置。不排除 Skill 源码及其他项目文件。这个准备步骤不需要另外提出知识更新提案；重复调用检查并复用已有规则。
 
